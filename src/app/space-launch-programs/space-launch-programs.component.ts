@@ -9,7 +9,7 @@ import { SpaceService } from './space.service';
   styleUrls: ['./space-launch-programs.component.css']
 })
 export class SpaceLaunchProgramsComponent implements OnInit {
-  spacePrograms: Array<{}>;
+  spacePrograms;
 
   constructor(private spaceService: SpaceService) { }
 
@@ -18,7 +18,8 @@ export class SpaceLaunchProgramsComponent implements OnInit {
   }
 
   getSpacePrograms(): void {
-    this.spaceService.getSpaceProgramsApi()
+    // fetch("https://api.spacexdata.com/v3/launches?limit=100");
+    this.spaceService.getSpaceProgramsApi({"limit": 100})
     .subscribe(spacePrograms => this.spacePrograms = spacePrograms);
   }
 }

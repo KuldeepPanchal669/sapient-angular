@@ -1,11 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { SpaceLaunchProgramsComponent } from './space-launch-programs/space-launch-programs.component';
-
 const routes: Routes = [
   { path: '', redirectTo: '/space-launch-programs', pathMatch: 'full' },
-  { path: 'space-launch-programs', component: SpaceLaunchProgramsComponent }
+  { path: 'space-launch-programs', loadChildren: () => import('./space-launch-programs/space-launch-programs.module').then(m => m.SpaceLaunchProgramsModule)},
 ];
 
 @NgModule({

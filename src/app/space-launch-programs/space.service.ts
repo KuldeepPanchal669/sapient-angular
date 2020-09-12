@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
@@ -8,47 +8,55 @@ import { catchError, map, tap } from 'rxjs/operators';
 @Injectable()
 export class SpaceService {
 
-  private url = 'api/heroes';  // URL to web api
+  private url = 'https://api.spacexdata.com/v3/launches';  // URL to web api
 
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    headers: new HttpHeaders(
+      {
+        "content-type": "application/json",
+      }
+    )
   };
 
   constructor(
-    private http: HttpClient,
-    ) { }
+    private _http: HttpClient,
+  ) { }
 
   /** GET heroes from the server */
-  getSpaceProgramsApi(): Observable<Array<{}>>{
-    return this.http.get("https://api.spacexdata.com/v3/launches?limit=100")
-      .pipe(
-        tap(_ => this.log('fetched space programs')),
-        catchError(this.handleError('getHeroes', []))
-      );
+  getSpaceProgramsApi(params): Observable<any> {
+    
+    const headers = new HttpHeaders().set("content-type", "application/json");
+    return this.callRestful("GET", this.url, { params: params });
+    // _http.get(this.url, { params: params, headers: headers });
   }
 
-  /**
-   * Handle Http operation that failed.
-   * Let the app continue.
-   * @param operation - name of the operation that failed
-   * @param result - optional value to return as the observable result
-   */
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
+  callRestful(type: string, url: string, options?: { params?: {}, body?: {}, headerData?: {} }) {
+    let params;
+    let body;
 
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
+    if (options != undefined && options['params'] != undefined)
+      params = options['params'];
+    if (options != undefined && options['body'] != undefined)
+      body = options['body'];
 
-      // TODO: better job of transforming error for user consumption
-      this.log(`${operation} failed: ${error.message}`);
-
-      // Let the app keep running by returning an empty result.
-      return of(result as T);
+    let headers = {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE'
     };
+
+    switch (type) {
+      case 'GET':
+        let getOptions = {};
+        getOptions = { params };
+        return this._http.get(url, getOptions).pipe(map(res => {
+          return res;
+        }));
+      default:
+        return null;
+    }
   }
 
-    /** Log a HeroService message with the MessageService */
-    private log(message: string) {
-      // this.messageService.add(`HeroService: ${message}`);
-    }
+  private handleError(err: HttpErrorResponse | any) {
+
+  }
 }
