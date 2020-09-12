@@ -10,53 +10,21 @@ export class SpaceService {
 
   private url = 'https://api.spacexdata.com/v3/launches';  // URL to web api
 
-  httpOptions = {
-    headers: new HttpHeaders(
-      {
-        "content-type": "application/json",
-      }
-    )
-  };
-
   constructor(
     private _http: HttpClient,
   ) { }
 
   /** GET heroes from the server */
   getSpaceProgramsApi(params): Observable<any> {
-    
-    const headers = new HttpHeaders().set("content-type", "application/json");
-    return this.callRestful("GET", this.url, { params: params });
-    // _http.get(this.url, { params: params, headers: headers });
+    return this._http
+      .get(this.url, { params: params })
+      .pipe(
+        catchError(err => this.handleError(err))
+      );
   }
 
-  callRestful(type: string, url: string, options?: { params?: {}, body?: {}, headerData?: {} }) {
-    let params;
-    let body;
-
-    if (options != undefined && options['params'] != undefined)
-      params = options['params'];
-    if (options != undefined && options['body'] != undefined)
-      body = options['body'];
-
-    let headers = {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE'
-    };
-
-    switch (type) {
-      case 'GET':
-        let getOptions = {};
-        getOptions = { params };
-        return this._http.get(url, getOptions).pipe(map(res => {
-          return res;
-        }));
-      default:
-        return null;
-    }
-  }
-
-  private handleError(err: HttpErrorResponse | any) {
-
+  handleError(err){
+    alert("Something went wrong");
+    return of([]);
   }
 }
