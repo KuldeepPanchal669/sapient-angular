@@ -5,6 +5,7 @@
 }
 body {
   margin: 0;
+  padding: 0;
 }
 .wrapper {
   background: #f1f1f1;
@@ -21,12 +22,15 @@ body {
   clear: both;
 }
 .filters {
-  width: 18%;
+  width: 15%;
   border: 1px solid #fff;
   background: #fff;
-  padding: 5px 10px 30px;
+  padding: 10px 0;
   margin: 20px 0px;
   float: left;
+}
+.filters >h3{
+  padding-left: 15px;
 }
 .filters p {
   text-align: center;
@@ -39,13 +43,14 @@ body {
   font-size: 15px;
   border-radius: 3px;
   padding: 5px 12px;
-  margin: 12px 22px 5px;
+  margin: 12px 17px 5px;
   display: inline-block;
   cursor: pointer;
 }
-.active, .btn:hover{
+.active,
+.btn:hover {
   background: darkseagreen !important;
-  color: #fff;
+  color: #fff !important;
 }
 .borderBottom {
   border-top: 1px solid #ddd;
@@ -53,26 +58,27 @@ body {
   width: 80%;
   margin: 5px auto;
 }
-.filters .successfulLaunch{
+.filters .successfulLaunch {
   padding: 20px 0 0;
 }
-.filters .launch{
+.filters .launch {
   background: lawngreen;
   color: #333;
   font-size: 15px;
   border-radius: 3px;
   padding: 5px 12px;
-  margin: 0px 22px 5px;
+  margin: 0px 17px 5px;
   display: inline-block;
   cursor: pointer;
 }
 
 .rightSide {
-  width: 80%;
+  width: 85%;
   float: right;
-  margin: 20px 0 0 5px;
+  margin: 20px 0 0 0px;
+  padding-left: 25px;
 }
-.rightSide >ul >li {
+.rightSide > ul > li {
   width: 23%;
   border: 1px solid #fff;
   background: #fff;
@@ -83,55 +89,81 @@ body {
   float: left;
 }
 
-.rightSide ul li strong{
+.rightSide ul li strong {
   color: darkblue;
   line-height: 27px;
   padding: 15px 0;
   display: inline-block;
 }
-.rightSide ul li:last-child{
+.rightSide ul li:last-child {
   margin-right: 0;
   margin-left: 15px;
 }
-.rocketImage{
+.rocketImage {
   background: #f1f1f1;
   display: block;
   padding: 0 10px;
 }
-.rightSide ul li> h5{
+.rightSide ul li > h5 {
   font-size: 15px;
 }
-#missionId{
+#missionId {
   margin-left: 10px;
   color: blue;
   font-size: 16px;
   line-height: 25px;
   list-style: disc;
 }
-.launchHeading{
+.launchHeading {
   font-size: 15px;
   padding: 10px 5px 0 0;
   display: inline-block;
   line-height: 22px;
 }
-#launchYear{
+#launchYear {
   color: blue;
   font-size: 15px;
   font-weight: 500;
 }
 
 /*responsive*/
-@media only screen and (max-width: 768px){
-  .filters{width: 31%;}
-  .rightSide{width: 68%;}
-  .rightSide >ul>li{width: 46%;margin:0 4px 25px 15px;}
-
+@media only screen and (max-width: 768px) {
+  .filters {
+    width: 31%;
+  }
+  .rightSide {
+    width: 68%;
+  }
+  .rightSide > ul > li {
+    width: 46%;
+    margin: 0 4px 25px 15px;
+  }
 }
 
-@media only screen and (max-width: 700px){
-  .filters{width: 35%;margin-bottom: 0;border-radius: 6px;}
-  .rightSide{width: 67%;float: left;margin-left: 0;}
-  .rightSide >ul>li{margin-left: 0;width: 52%;margin-right: 0;}
-  .rightSide >ul>li:last-child{margin-left: 0;}
-  .top-heading>h1{font-size: 20px;}
+@media only screen and (max-width: 700px) {
+  .filters {
+    width: 35%;
+    margin-bottom: 0;
+    border-radius: 6px;
+    padding:20px 10px;
+  }
+  .filters .btn{
+    padding: 8px 17px;
+  }
+  .rightSide {
+    width: 67%;
+    float: left;
+    padding-left: 0;
+  }
+  .rightSide > ul > li {
+    margin-left: 0;
+    width: 52%;
+    margin-right: 0;
+  }
+  .rightSide > ul > li:last-child {
+    margin-left: 0;
+  }
+  .top-heading > h1 {
+    font-size: 20px;
+  }
 }
