@@ -1,0 +1,137 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  margin: 0;
+}
+.wrapper {
+  background: #f1f1f1;
+  padding: 10px 20px;
+  float: left;
+  width: 100%;
+}
+.top-heading h1 {
+  font-size: 25px;
+}
+.clearfix {
+  content: "";
+  display: block;
+  clear: both;
+}
+.filters {
+  width: 18%;
+  border: 1px solid #fff;
+  background: #fff;
+  padding: 5px 10px 30px;
+  margin: 20px 0px;
+  float: left;
+}
+.filters p {
+  text-align: center;
+  font-size: 14px;
+  padding: 10px 0 0;
+}
+.filters .btn {
+  background: lawngreen;
+  color: #333;
+  font-size: 15px;
+  border-radius: 3px;
+  padding: 5px 12px;
+  margin: 12px 22px 5px;
+  display: inline-block;
+  cursor: pointer;
+}
+.active, .btn:hover{
+  background: darkseagreen !important;
+  color: #fff;
+}
+.borderBottom {
+  border-top: 1px solid #ddd;
+  display: block;
+  width: 80%;
+  margin: 5px auto;
+}
+.filters .successfulLaunch{
+  padding: 20px 0 0;
+}
+.filters .launch{
+  background: lawngreen;
+  color: #333;
+  font-size: 15px;
+  border-radius: 3px;
+  padding: 5px 12px;
+  margin: 0px 22px 5px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.rightSide {
+  width: 80%;
+  float: right;
+  margin: 20px 0 0 5px;
+}
+.rightSide >ul >li {
+  width: 23%;
+  border: 1px solid #fff;
+  background: #fff;
+  list-style: none;
+  padding: 20px;
+  border-radius: 6px;
+  margin: 0 12px 0 5px;
+  float: left;
+}
+
+.rightSide ul li strong{
+  color: darkblue;
+  line-height: 27px;
+  padding: 15px 0;
+  display: inline-block;
+}
+.rightSide ul li:last-child{
+  margin-right: 0;
+  margin-left: 15px;
+}
+.rocketImage{
+  background: #f1f1f1;
+  display: block;
+  padding: 0 10px;
+}
+.rightSide ul li> h5{
+  font-size: 15px;
+}
+#missionId{
+  margin-left: 10px;
+  color: blue;
+  font-size: 16px;
+  line-height: 25px;
+  list-style: disc;
+}
+.launchHeading{
+  font-size: 15px;
+  padding: 10px 5px 0 0;
+  display: inline-block;
+  line-height: 22px;
+}
+#launchYear{
+  color: blue;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+/*responsive*/
+@media only screen and (max-width: 768px){
+  .filters{width: 31%;}
+  .rightSide{width: 68%;}
+  .rightSide >ul>li{width: 46%;margin:0 4px 25px 15px;}
+
+}
+
+@media only screen and (max-width: 700px){
+  .filters{width: 35%;margin-bottom: 0;border-radius: 6px;}
+  .rightSide{width: 67%;float: left;margin-left: 0;}
+  .rightSide >ul>li{margin-left: 0;width: 52%;margin-right: 0;}
+  .rightSide >ul>li:last-child{margin-left: 0;}
+  .top-heading>h1{font-size: 20px;}
+}
