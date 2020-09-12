@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
+import { SpaceService } from './space.service';
 
 @Component({
   selector: 'app-space-launch-programs',
@@ -9,31 +9,16 @@ import { HeroService } from '../hero.service';
   styleUrls: ['./space-launch-programs.component.css']
 })
 export class SpaceLaunchProgramsComponent implements OnInit {
-  heroes: Hero[];
+  spacePrograms: Array<{}>;
 
-  constructor(private heroService: HeroService) { }
+  constructor(private spaceService: SpaceService) { }
 
   ngOnInit() {
-    this.getHeroes();
+    this.getSpacePrograms();
   }
 
-  getHeroes(): void {
-    this.heroService.getHeroes()
-    .subscribe(heroes => this.heroes = heroes);
+  getSpacePrograms(): void {
+    this.spaceService.getSpaceProgramsApi()
+    .subscribe(spacePrograms => this.spacePrograms = spacePrograms);
   }
-
-  add(name: string): void {
-    name = name.trim();
-    if (!name) { return; }
-    this.heroService.addHero({ name } as Hero)
-      .subscribe(hero => {
-        this.heroes.push(hero);
-      });
-  }
-
-  delete(hero: Hero): void {
-    this.heroes = this.heroes.filter(h => h !== hero);
-    this.heroService.deleteHero(hero).subscribe();
-  }
-
 }
