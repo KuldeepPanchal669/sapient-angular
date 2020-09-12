@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
 import { SpaceService } from './space.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { combineLatest } from 'rxjs';
 
 @Component({
   selector: 'app-space-launch-programs',
@@ -40,10 +38,6 @@ export class SpaceLaunchProgramsComponent implements OnInit {
     };
 
     this._activatedRoute.queryParams.subscribe((queryParams) => {
-      if (Object.keys(queryParams).length) {
-
-      }
-      console.log('[queryParams]', queryParams);
       this.updateFilters(queryParams);
       this.getSpacePrograms(queryParams);
     })
@@ -56,29 +50,14 @@ export class SpaceLaunchProgramsComponent implements OnInit {
   getSpacePrograms(queryParams): void {
     this.spaceService.getSpaceProgramsApi({ ...{ "limit": 100 }, ...queryParams })
       .subscribe((spacePrograms) => {
-        // const launchYears = [];
-        // spacePrograms.map((acc) => {
-        //   if (launchYears.indexOf(acc['launch_year']) == -1) {
-        //     launchYears.push(acc['launch_year'])
-        //   }
-        // });
-        // console.log(launchYears);
         this.spacePrograms = spacePrograms;
       });
   }
 
   navigateTo(type, param) {
-
     const queryParams = { ...this._activatedRoute.snapshot.queryParams };
-    // const queryParams = {};
-
-    // if (Object.keys(currentQueryParams).length) {
-    //   for (let key in currentQueryParams) {
-    //     queryParams[key] = currentQueryParams[key];
-    //   }
-    // }
     if (queryParams[type] != undefined) {
-      if (queryParams[type] == param+"") {
+      if (queryParams[type] == param + "") {
         delete queryParams[type];
       } else {
         queryParams[type] = param;
@@ -95,7 +74,6 @@ export class SpaceLaunchProgramsComponent implements OnInit {
       successfullLaunch: null,
       successfullLand: null
     };
-    // if (queryParams['launch_year']) {
     let launchYears = [...this.filter.launchYears];
     launchYears = launchYears.map((launchYear) => {
       launchYear = { ...launchYear }
@@ -106,17 +84,8 @@ export class SpaceLaunchProgramsComponent implements OnInit {
       return launchYear;
     });
     filter['launchYears'] = launchYears;
-    // }
-    // if (queryParams['launch_success'] != undefined) {
     filter['successfullLaunch'] = queryParams['launch_success'] != undefined ? queryParams['launch_success'] : null;
-    // } else {
-    //   filter['successfullLaunch'] = null;
-    // }
-    // if (queryParams['land_success'] != undefined) {
     filter['successfullLand'] = queryParams['land_success'] != undefined ? queryParams['land_success'] : null;
-    // } else {
-    //   filter['successfullLand'] = null;
-    // }
     this.filter = filter;
   }
 }
