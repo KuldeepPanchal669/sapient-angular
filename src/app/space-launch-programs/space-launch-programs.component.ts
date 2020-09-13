@@ -25,7 +25,10 @@ export class SpaceLaunchProgramsComponent implements OnInit {
     constructor(@Inject(PLATFORM_ID) platformId, private _tState: TransferState, private _activatedRoute: ActivatedRoute, private _router: Router, private spaceService: SpaceService) {
         this.isServer = isPlatformServer(platformId);
         this.isBrowser = isPlatformBrowser(platformId);
-        this.spacePrograms = [];
+
+        //Initialize Data with state or with blank array if no state is found.
+        this.initializeData(this._tState.get(SP, []));
+
         this.filter = {
             launchYears: [
                 { year: 2006, active: false },
@@ -47,21 +50,22 @@ export class SpaceLaunchProgramsComponent implements OnInit {
         this._activatedRoute.queryParams.subscribe((queryParams) => {
             this.filter = this.updateFilters(queryParams);
             if (this._tState.hasKey(SP)) {
-                this.initilizeData(this._tState.get(SP, []));
-            } else {
-                this.getSpacePrograms(queryParams)
-                    .pipe(
-                        catchError((err) => {
-                            return of([]);
-                        })
-                    )
-                    .subscribe((spacePrograms) => {
-                        if (this.isServer) {
-                            this._tState.set(SP, spacePrograms);
-                        }
-                        this.initilizeData(spacePrograms);
-                    });
+                // this.initializeData(this._tState.get(SP, []));
+                return;
             }
+
+            this.getSpacePrograms(queryParams)
+                .pipe(
+                    catchError((err) => {
+                        return of([]);
+                    })
+                )
+                .subscribe((spacePrograms) => {
+                    if (this.isServer) {
+                        this._tState.set(SP, spacePrograms);
+                    }
+                    this.initializeData(spacePrograms);
+                });
         })
     }
 
@@ -69,8 +73,7 @@ export class SpaceLaunchProgramsComponent implements OnInit {
 
     }
 
-    ngAfterViewInit()
-    {
+    ngAfterViewInit() {
         /*Remove key set on server side to avoid api on dom load of frontend side*/
         if (this.isBrowser) {
             this._tState.remove(SP);
@@ -81,7 +84,7 @@ export class SpaceLaunchProgramsComponent implements OnInit {
         return this.spaceService.getSpaceProgramsApi({ ...{ "limit": 100 }, ...queryParams });
     }
 
-    initilizeData(spacePrograms) {
+    initializeData(spacePrograms) {
         this.spacePrograms = spacePrograms;
     }
 
