@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, PLATFORM_ID, Inject } from '@angular/core';
 import { SpaceService } from './space.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { TransferState } from '@angular/platform-browser';
+import { isPlatformServer, isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-space-launch-programs',
@@ -14,10 +16,13 @@ export class SpaceLaunchProgramsComponent implements OnInit {
     successfullLaunch: boolean,
     successfullLand: boolean
   };
-
   defaultParms;
+  isBrowser: boolean;
+  isServer: boolean;
 
-  constructor(private _activatedRoute: ActivatedRoute, private _router: Router, private spaceService: SpaceService) {
+  constructor(@Inject(PLATFORM_ID) platformId, private _tState: TransferState, private _activatedRoute: ActivatedRoute, private _router: Router, private spaceService: SpaceService) {
+    this.isServer = isPlatformServer(platformId);
+    this.isBrowser = isPlatformBrowser(platformId);
     this.spacePrograms = [];
     this.filter = {
       launchYears: [
