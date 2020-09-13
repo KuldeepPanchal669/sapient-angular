@@ -47,7 +47,7 @@ export class SpaceLaunchProgramsComponent implements OnInit {
         this._activatedRoute.queryParams.subscribe((queryParams) => {
             this.filter = this.updateFilters(queryParams);
             if (this._tState.hasKey(SP)) {
-                this._tState.get(SP, []);
+                this.initilizeData(this._tState.get(SP, []));
             } else {
                 this.getSpacePrograms(queryParams)
                     .pipe(

@@ -10,7 +10,7 @@ import { isPlatformBrowser } from '@angular/common';
 
 @NgModule({
   imports: [
-    BrowserModule.withServerTransition({ appId: 'tour-of-heroes' }),
+    BrowserModule.withServerTransition({ appId: 'sapient-angular-state' }),
     FormsModule,
     AppRoutingModule,
     HttpClientModule,

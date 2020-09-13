@@ -10,7 +10,6 @@ import { BrowserModule } from '@angular/platform-browser';
     AppModule,
     ServerModule,
     ServerTransferStateModule,
-    BrowserModule.withServerTransition({ appId: 'sapient-angular'  })
   ],
   providers: [
     // Add server-only providers here.
