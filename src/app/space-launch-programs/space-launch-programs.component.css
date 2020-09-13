@@ -22,7 +22,7 @@ body {
   clear: both;
 }
 .filters {
-  width: 15%;
+  width: 20%;
   border: 1px solid #fff;
   background: #fff;
   padding: 10px 0;
@@ -43,12 +43,18 @@ body {
   font-size: 15px;
   border-radius: 3px;
   padding: 5px 12px;
-  margin: 12px 17px 5px;
+  /* margin: 12px 17px 5px; */
   display: inline-block;
   cursor: pointer;
+  width: 40%;
+  margin-bottom: 10px;
 }
-.active,
-.btn:hover {
+
+.filters .btn:nth-child(n) {
+  margin-left: 7%;
+}
+.active
+{
   background: darkseagreen !important;
   color: #fff !important;
 }
@@ -61,25 +67,15 @@ body {
 .filters .successfulLaunch {
   padding: 20px 0 0;
 }
-.filters .launch {
-  background: lawngreen;
-  color: #333;
-  font-size: 15px;
-  border-radius: 3px;
-  padding: 5px 12px;
-  margin: 0px 17px 5px;
-  display: inline-block;
-  cursor: pointer;
-}
 
 .rightSide {
-  width: 85%;
+  width: 80%;
   float: right;
   margin: 20px 0 0 0px;
   padding-left: 25px;
 }
 .rightSide > ul > li {
-  width: 23%;
+  width: 22%;
   border: 1px solid #fff;
   background: #fff;
   list-style: none;
@@ -87,6 +83,7 @@ body {
   border-radius: 6px;
   margin: 0 12px 0 5px;
   float: left;
+  /* height: 410px; */
 }
 
 .rightSide ul li strong {
@@ -99,11 +96,20 @@ body {
   margin-right: 0;
   margin-left: 15px;
 }
+
+.rightSide ul li:nth-child(n+5) {
+  margin-top: 30px;;
+}
 .rocketImage {
   background: #f1f1f1;
   display: block;
   padding: 0 10px;
 }
+
+.rocketImage img{
+  width: 100%;
+}
+
 .rightSide ul li > h5 {
   font-size: 15px;
 }
@@ -127,22 +133,15 @@ body {
 }
 
 /*responsive*/
-@media only screen and (max-width: 768px) {
-  .filters {
-    width: 31%;
-  }
-  .rightSide {
-    width: 68%;
-  }
-  .rightSide > ul > li {
-    width: 46%;
-    margin: 0 4px 25px 15px;
-  }
-}
-
 @media only screen and (max-width: 700px) {
+  .rocketImage {
+    text-align: center;
+  }
+  .rocketImage img{
+    width: 100%;
+  }
   .filters {
-    width: 35%;
+    width: 100%;
     margin-bottom: 0;
     border-radius: 6px;
     padding:20px 10px;
@@ -151,19 +150,46 @@ body {
     padding: 8px 17px;
   }
   .rightSide {
-    width: 67%;
+    width: 100%;
     float: left;
     padding-left: 0;
   }
   .rightSide > ul > li {
     margin-left: 0;
-    width: 52%;
+    width: 100%;
     margin-right: 0;
+  }
+  .rightSide ul li:nth-child(n+2) {
+    margin-top: 20px;;
   }
   .rightSide > ul > li:last-child {
     margin-left: 0;
   }
   .top-heading > h1 {
     font-size: 20px;
+  }
+}
+
+@media only screen and (min-width: 700px) and (max-width: 1024px) {
+  .filters {
+    width: 30%;
+  }
+  .rightSide {
+    width: 70%;
+  }
+  .rightSide > ul > li {
+    width: 45%;
+    margin: 0 4px 25px 15px;
+    /* height: 410px; */
+    float: left;
+  }
+  .rightSide ul li:nth-child(n+2) {
+    margin-top: 5px;;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .rightSide > ul > li {
+    height: 410px;
   }
 }
