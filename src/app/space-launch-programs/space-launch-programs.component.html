@@ -17,14 +17,14 @@
       <p class="borderBottom"></p>
 
       <!-- {{filter.successfullLaunch | json}} -->
-      <span class="btn launch" [class.active]="filter.successfullLaunch == 'true'" (click)="navigateTo('launch_success', true)">True</span>
-      <span class="btn launch" [class.active]="filter.successfullLaunch != null && filter.successfullLaunch == 'false'" (click)="navigateTo('launch_success', false)">False</span>
+      <span class="btn launch" [class.active]="filter?.successfullLaunch === 'true'" (click)="navigateTo('launch_success', true)">True</span>
+      <span class="btn launch" [class.active]="filter?.successfullLaunch != null && filter?.successfullLaunch === 'false'" (click)="navigateTo('launch_success', false)">False</span>
 
       <p class="successfullLaunch">Successful Landing</p>
       <p class="borderBottom"></p>
 
-      <span class="btn launch" [class.active]="filter.successfullLand == 'true'" (click)="navigateTo('land_success', true)">True</span>
-      <span class="btn launch" [class.active]="filter.successfullLand !=null && filter.successfullLand == 'false'" (click)="navigateTo('land_success', false)">False</span>
+      <span class="btn launch" [class.active]="filter?.successfullLand === 'true'" (click)="navigateTo('land_success', true)">True</span>
+      <span class="btn launch" [class.active]="filter?.successfullLand !=null && filter?.successfullLand === 'false'" (click)="navigateTo('land_success', false)">False</span>
 
     </div>
 
