@@ -38,7 +38,7 @@ export class SpaceLaunchProgramsComponent implements OnInit {
     };
 
     this._activatedRoute.queryParams.subscribe((queryParams) => {
-      this.updateFilters(queryParams);
+      this.filter = this.updateFilters(queryParams);
       this.getSpacePrograms(queryParams);
     })
   }
@@ -86,6 +86,6 @@ export class SpaceLaunchProgramsComponent implements OnInit {
     filter['launchYears'] = launchYears;
     filter['successfullLaunch'] = queryParams['launch_success'] != undefined ? queryParams['launch_success'] : null;
     filter['successfullLand'] = queryParams['land_success'] != undefined ? queryParams['land_success'] : null;
-    this.filter = filter;
+    return filter;
   }
 }

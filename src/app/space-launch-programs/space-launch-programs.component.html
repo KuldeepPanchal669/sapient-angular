@@ -33,20 +33,20 @@
       <ul>
         <li *ngFor="let spaceProgram of spacePrograms">
           <div class="rocketImage">
-            <img src="https://images2.imgbox.com/40/e3/GypSkayF_o.png" style="width:100%">
+            <img src="{{spaceProgram?.links?.mission_patch_small}}" style="width:100%">
           </div>
-          <strong>FalconSat #1</strong>
+          <strong>{{spaceProgram?.mission_name}}</strong>
           <h5>Mission Ids:</h5>
           <ul id="missionId">
-            <li>
-              {{"list mission id"}}
+            <li *ngFor="let id of spaceProgram?.mission_id">
+              {{id}}
             </li>
           </ul>
 
-          <h5 class="launchHeading">Launch Year:</h5> <span id="launchYear">2006</span>
+          <h5 class="launchHeading">Launch Year:</h5> <span id="launchYear">{{spaceProgram?.launch_year}}</span>
 
-          <h5 class="launchHeading"> Successful Launch:</h5> <span id="launchYear">False</span>
-          <h5 class="launchHeading"> Successful Landing:</h5> <span id="launchYear">{{"launch_landing"}}</span>
+          <h5 class="launchHeading"> Successful Launch:</h5> <span id="launchYear">{{spaceProgram?.launch_success}}</span>
+          <h5 class="launchHeading"> Successful Landing:</h5> <span id="launchYear">{{spaceProgram?.rocket?.first_stage?.cores[0]?.land_success}}</span>
         </li>        
       </ul>
     </div>
